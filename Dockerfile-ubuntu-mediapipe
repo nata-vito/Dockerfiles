@@ -1,4 +1,4 @@
-FROM ubuntu:18.04 as base
+FROM ubuntu:18.04 
 
 RUN apt-get update && apt-get install -yqq \
       curl \
@@ -12,8 +12,8 @@ RUN apt-get update && apt-get install -yqq \
     python3.8 \
     python3-pip \
     && \
-    apt-get remove --purge -yq \
-        curl \
-        gpg 
+    python3 -m pip install --upgrade pip && python3 -m pip install mediapipe\
+    && rm -rf /var/lib/apt/lists/*
 
-CMD ["/bin/bash"]
+
+CMD ["bash"]
