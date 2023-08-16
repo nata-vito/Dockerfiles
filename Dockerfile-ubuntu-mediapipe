@@ -1,0 +1,19 @@
+FROM ubuntu:18.04 as base
+
+RUN apt-get update && apt-get install -yqq \
+      curl \
+      gpg \
+      apt-transport-https \
+      software-properties-common \
+      git \
+    && \
+    add-apt-repository -y ppa:deadsnakes/ppa &&\
+    apt-get install -yqq \
+    python3.8 \
+    python3-pip \
+    && \
+    apt-get remove --purge -yq \
+        curl \
+        gpg 
+
+CMD ["/bin/bash"]
